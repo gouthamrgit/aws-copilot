@@ -1,0 +1,21 @@
+name: frontend
+type: Load Balanced Web Service
+
+image:
+  build:
+    context: .
+    dockerfile: frontend/Dockerfile
+
+cpu: 256
+memory: 512
+count: 1
+port: 3000
+
+http:
+  path: '/'
+  healthcheck: '/health'
+
+variables:
+  BACKEND_URL: "http://backend.${COPILOT_SERVICE_DISCOVERY_ENDPOINT}:8080"
+
+exec: true

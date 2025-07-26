@@ -1,0 +1,22 @@
+name: backend
+type: Backend Service
+
+image:
+  build:
+    context: .
+    dockerfile: backend/Dockerfile
+
+cpu: 256
+memory: 512
+count: 1
+
+port: 8080
+
+healthcheck:
+  command: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+  interval: 10s
+  timeout: 5s
+  retries: 2
+  start_period: 10s
+
+exec: true
