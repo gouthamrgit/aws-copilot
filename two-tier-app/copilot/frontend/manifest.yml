@@ -5,17 +5,17 @@ image:
   build:
     context: .
     dockerfile: frontend/Dockerfile
+  port: 3000   # <--- Must be inside `image`
 
 cpu: 256
 memory: 512
 count: 1
-port: 3000
 
 http:
   path: '/'
   healthcheck: '/health'
 
 variables:
-  BACKEND_URL: "http://backend.${COPILOT_SERVICE_DISCOVERY_ENDPOINT}:8080"
+  BACKEND_URL: "http://backend:8080"
 
 exec: true

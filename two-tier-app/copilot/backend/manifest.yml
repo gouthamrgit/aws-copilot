@@ -5,12 +5,11 @@ image:
   build:
     context: .
     dockerfile: backend/Dockerfile
+  port: 8080     # <-- move here
 
 cpu: 256
 memory: 512
 count: 1
-
-port: 8080
 
 healthcheck:
   command: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
